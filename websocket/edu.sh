@@ -1,6 +1,6 @@
 #!/bin/bash
 # Proxy For Edukasi & Imclass
-# My Telegram : https://t.me/Akbar218
+# My Telegram : https://t.me/spvpnpro
 # ==========================================
 # Color
 RED='\033[0;31m'
@@ -26,7 +26,7 @@ exit 0
 fi
 clear
 # Link Hosting Kalian
-akbarvpn="raw.githubusercontent.com/lizsvr/cfnfree/main/websocket"
+akbarvpn="raw.githubusercontent.com/SophongVPN/cfnfree/main/websocket"
 
 # Getting Proxy Template
 wget -q -O /usr/local/bin/ws-nontls https://${akbarvpn}/websocket.py
