@@ -202,9 +202,9 @@ echo "/usr/sbin/nologin" >> /etc/shells
 
 # install squid
 cd
-#apt -y install squid3
-#wget -O /etc/squid/squid.conf "https://${akbarvpn}/squid3.conf"
-#sed -i $MYIP2 /etc/squid/squid.conf
+apt -y install squid3
+wget -O /etc/squid/squid.conf "https://${akbarvpn}/squid3.conf"
+sed -i $MYIP2 /etc/squid/squid.conf
 
 # Install SSLH
 apt -y install sslh
