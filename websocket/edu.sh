@@ -58,9 +58,9 @@ systemctl enable ws-nontls
 systemctl restart ws-nontls
 
 # Getting Proxy Template
-wget -q -O /usr/local/bin/ws-nontls https://${akbarvpn}/websocket.py
-#cp /root/myproject/websocket/websocket.py /usr/local/bin/ws-nontls
-chmod +x /usr/local/bin/ws-nontls
+wget -q -O /usr/local/bin/ws-nontls80 https://${akbarvpn}/websocket.py
+#cp /root/myproject/websocket/websocket.py /usr/local/bin/ws-nontls80
+chmod +x /usr/local/bin/ws-nontls80
 
 # Installing Service
 cat > /etc/systemd/system/ws-nontls80.service << END
