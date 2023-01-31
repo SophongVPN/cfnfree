@@ -1,6 +1,6 @@
 #!/bin/bash
 # Ohp Script
-# My Telegram : https://t.me/Akbar218
+# Join Telegram : https://t.me/spvpnpro
 # ==========================================
 # Color
 RED='\033[0;31m'
@@ -21,9 +21,7 @@ echo -e "${NC}${GREEN}Permission Accepted...${NC}"
 else
 echo -e "${NC}${RED}Permission Denied!${NC}";
 echo -e "${NC}${LIGHT}Please Contact Admin!!"
-echo -e "${NC}${LIGHT}Facebook : https://m.facebook.com/lis.tio.718"
-echo -e "${NC}${LIGHT}WhatsApp : 081545854516"
-echo -e "${NC}${LIGHT}Telegram : https://t.me/Akbar218"
+echo -e "${NC}${LIGHT}Join Telegram : https://t.me/spvpnpro"
 exit 0
 fi
 
@@ -35,11 +33,11 @@ cp ohpserver /usr/local/bin/ohpserver
 /bin/rm -rf ohpserver*
 
 # Installing Service
-# SSH OHP Port 8181
+# SSH OHP Port 8082
 cat > /etc/systemd/system/ssh-ohp.service << END
 [Unit]
 Description=SSH OHP Redirection Service
-Documentation=https://t.me/Akbar218
+Documentation=https://t.me/spvpnpro
 After=network.target nss-lookup.target
 
 [Service]
@@ -48,7 +46,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/local/bin/ohpserver -port 8080 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:22
+ExecStart=/usr/local/bin/ohpserver -port 8082 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:22
 Restart=on-failure
 LimitNOFILE=infinity
 
@@ -56,11 +54,11 @@ LimitNOFILE=infinity
 WantedBy=multi-user.target
 END
 
-# Dropbear OHP 8282
+# Dropbear OHP 8081
 cat > /etc/systemd/system/dropbear-ohp.service << END
 [Unit]]
 Description=Dropbear OHP Redirection Service
-Documentation=https://t.me/Akbar218
+Documentation=https://t.me/spvpnpro
 After=network.target nss-lookup.target
 
 [Service]
@@ -69,7 +67,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/local/bin/ohpserver -port 8282 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:109
+ExecStart=/usr/local/bin/ohpserver -port 8081 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:109
 Restart=on-failure
 LimitNOFILE=infinity
 
@@ -77,11 +75,11 @@ LimitNOFILE=infinity
 WantedBy=multi-user.target
 END
 
-# OpenVPN OHP 8383
+# OpenVPN OHP 8080
 cat > /etc/systemd/system/openvpn-ohp.service << END
 [Unit]]
 Description=OpenVPN OHP Redirection Service
-Documentation=https://t.me/Akbar218
+Documentation=https://t.me/spvpnpro
 After=network.target nss-lookup.target
 
 [Service]
@@ -90,7 +88,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/local/bin/ohpserver -port 8383 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:1194
+ExecStart=/usr/local/bin/ohpserver -port 8080 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:1194
 Restart=on-failure
 LimitNOFILE=infinity
 
@@ -109,21 +107,21 @@ systemctl restart openvpn-ohp
 printf 'INSTALLATION COMPLETED !\n'
 sleep 0.5
 printf 'CHECKING LISTENING PORT\n'
-if [ -n "$(ss -tupln | grep ohpserver | grep -w 8181)" ]
+if [ -n "$(ss -tupln | grep ohpserver | grep -w 8082)" ]
 then
 	echo 'SSH OHP Redirection Running'
 else
 	echo 'SSH OHP Redirection Not Found, please check manually'
 fi
 sleep 0.5
-if [ -n "$(ss -tupln | grep ohpserver | grep -w 8282)" ]
+if [ -n "$(ss -tupln | grep ohpserver | grep -w 8081)" ]
 then
 	echo 'Dropbear OHP Redirection Running'
 else
 	echo 'Dropbear OHP Redirection Not Found, please check manually'
 fi
 sleep 0.5
-if [ -n "$(ss -tupln | grep ohpserver | grep -w 8383)" ]
+if [ -n "$(ss -tupln | grep ohpserver | grep -w 8080)" ]
 then
 	echo 'OpenVPN OHP Redirection Running'
 else
