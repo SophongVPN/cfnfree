@@ -87,6 +87,36 @@ systemctl enable ws-nontls80
 systemctl restart ws-nontls80
 
 # Getting Proxy Template
+wget -q -O /usr/local/bin/ws-nontls8280 https://${akbarvpn}/websocket.py
+#cp /root/myproject/websocket/websocket.py /usr/local/bin/ws-nontls8280
+chmod +x /usr/local/bin/ws-nontls8280
+
+# Installing Service
+cat > /etc/systemd/system/ws-nontls8280.service << END
+[Unit]
+Description=Python Proxy Mod By Akbar Maulana
+Documentation=https://t.me/Akbar218
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+User=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-nontls8280 8280
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+
+systemctl daemon-reload
+systemctl enable ws-nontls8280
+systemctl restart ws-nontls8280
+
+
+# Getting Proxy Template
 wget -q -O /usr/local/bin/ws-ovpn https://${akbarvpn}/ws-ovpn.py
 #cp /root/myproject/websocket/ws-ovpn.py /usr/local/bin/ws-ovpn
 chmod +x /usr/local/bin/ws-ovpn
@@ -145,6 +175,9 @@ systemctl enable ws-nontls
 systemctl restart ws-nontls
 systemctl enable ws-nontls80
 systemctl restart ws-nontls80
+systemctl enable ws-nontls8280
+systemctl restart ws-nontls8280
+
 systemctl enable ws-tls
 systemctl restart ws-tls
 sleep 3
