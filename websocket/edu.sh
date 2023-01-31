@@ -63,7 +63,7 @@ wget -q -O /usr/local/bin/ws-nontls https://${akbarvpn}/websocket.py
 chmod +x /usr/local/bin/ws-nontls80
 
 # Installing Service
-cat > /etc/systemd/system/ws-nontls.service << END
+cat > /etc/systemd/system/ws-nontls1.service << END
 [Unit]
 Description=Python Proxy Mod By Akbar Maulana
 Documentation=https://t.me/Akbar218
