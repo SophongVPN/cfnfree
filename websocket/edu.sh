@@ -46,7 +46,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/ws-nontls 80
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-nontls 8880
 Restart=on-failure
 
 [Install]
@@ -56,6 +56,35 @@ END
 systemctl daemon-reload
 systemctl enable ws-nontls
 systemctl restart ws-nontls
+
+# Getting Proxy Template
+wget -q -O /usr/local/bin/ws-nontls https://${akbarvpn}/websocket.py
+#cp /root/myproject/websocket/websocket.py /usr/local/bin/ws-nontls80
+chmod +x /usr/local/bin/ws-nontls80
+
+# Installing Service
+cat > /etc/systemd/system/ws-nontls.service << END
+[Unit]
+Description=Python Proxy Mod By Akbar Maulana
+Documentation=https://t.me/Akbar218
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+User=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-nontls80 80
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+
+systemctl daemon-reload
+systemctl enable ws-nontls80
+systemctl restart ws-nontls80
 
 # Getting Proxy Template
 wget -q -O /usr/local/bin/ws-ovpn https://${akbarvpn}/ws-ovpn.py
@@ -114,6 +143,8 @@ END
 systemctl daemon-reload
 systemctl enable ws-nontls
 systemctl restart ws-nontls
+systemctl enable ws-nontls80
+systemctl restart ws-nontls80
 systemctl enable ws-tls
 systemctl restart ws-tls
 sleep 3
