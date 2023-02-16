@@ -30,6 +30,8 @@ sleep 2
 systemctl daemon-reload
 systemctl restart ws-tls
 systemctl restart ws-nontls
+systemctl restart ws-nontls80
+systemctl restart ws-nontls8280
 #systemctl restart xray.service
 #systemctl restart shadowsocks-libev
 #systemctl restart xl2tpd
