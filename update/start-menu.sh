@@ -43,7 +43,7 @@ clear
 # echo -e "$BLUE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"$NC
 # echo -e "$BRED           SELAMAT DATANG            $NC"
 # echo -e "$BLUE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"$NC
-# figlet LIZSVR | lolcat
+# figlet Spvpnpro | lolcat
 # #echo -e "$NC"
 # echo -e "Telegram : @spvpnpro"
 echo -e "$BLUE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NC"
