@@ -20,7 +20,7 @@ echo -e "${NC}${GREEN}Permission Accepted...${NC}"
 else
 echo -e "${NC}${RED}Permission Denied!${NC}";
 echo -e "${NC}${LIGHT}Please Contact Admin!!"
-echo -e "${NC}${LIGHT}Telegram : https://t.me/liz_mine"
+echo -e "${NC}${LIGHT}Telegram : https://t.me/spwingaming"
 exit 0
 fi
 error1="${RED}[ERROR]${NC}"
@@ -67,11 +67,11 @@ expi="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$pass\n$pass\n" | passwd $Login &> /dev/null
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 expi=`date -d "${hari} days" +"%Y-%m-%d"`
-echo -e  "${success} Menambahkan User Please Wait.."
+echo -e  "${success} អ្នកប្រើប្រាស់សូមរង់ចាំ.."
 sleep 5
 clear
 fi
-echo -e "Thank You For Using Our Services"
+echo -e "សូមអរគុណចំពោះការប្រើប្រាស់សេវាកម្មរបស់យើង"
 echo -e "====== SSH & OVPN Account ======"
 echo -e "IP/Host       : $IP"
 echo -e "Domain        : ${domain}"
@@ -81,10 +81,11 @@ echo -e "Password      : $pass"
 echo -e ""
 echo -e "======== Running On Port ======="
 echo -e "Dropbear      : 109, 143"
-echo -e "SSL/TLS       :$ssl"
-echo -e "SSH WS SSL    : $ws"
-echo -e "SSH WS No SSL : $ws2"
+echo -e "SSL/TLS       : 443"
+echo -e "SSH WS SSL    : 443"
+echo -e "SSH WS No SSL : 80,8880"
 echo -e "Ovpn Ws       : 2086"
+echo -e "Ovpn ohp      : 8080"
 echo -e "Port TCP      : $ovpn"
 echo -e "Port UDP      : $ovpn2"
 echo -e "Port SSL      : 990"
