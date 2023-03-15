@@ -66,15 +66,21 @@ cat > /etc/openvpn/tcp.ovpn <<-END
 client
 dev tun
 proto tcp
+sndbuf 0
+rcvbuf 0
 remote xxxxxxxxx 1194
-resolv-retry infinite
-route-method exe
+resolv-retry 5
 nobind
 persist-key
 persist-tun
-auth-user-pass
-comp-lzo
+remote-cert-tls server
+cipher AES-256-CBC
+comp-lzo yes
+setenv opt block-outside-dns
+key-direction 1
 verb 3
+keepalive 10 120
+float
 END
 
 sed -i $MYIP2 /etc/openvpn/tcp.ovpn;
@@ -84,15 +90,21 @@ cat > /etc/openvpn/udp.ovpn <<-END
 client
 dev tun
 proto udp
+sndbuf 0
+rcvbuf 0
 remote xxxxxxxxx 2200
-resolv-retry infinite
-route-method exe
+resolv-retry 5
 nobind
 persist-key
 persist-tun
-auth-user-pass
-comp-lzo
+remote-cert-tls server
+cipher AES-256-CBC
+comp-lzo yes
+setenv opt block-outside-dns
+key-direction 1
 verb 3
+keepalive 10 120
+float
 END
 
 sed -i $MYIP2 /etc/openvpn/udp.ovpn;
@@ -102,15 +114,21 @@ cat > /etc/openvpn/ssl.ovpn <<-END
 client
 dev tun
 proto tcp
+sndbuf 0
+rcvbuf 0
 remote xxxxxxxxx 990
-resolv-retry infinite
-route-method exe
+resolv-retry 5
 nobind
 persist-key
 persist-tun
-auth-user-pass
-comp-lzo
+remote-cert-tls server
+cipher AES-256-CBC
+comp-lzo yes
+setenv opt block-outside-dns
+key-direction 1
 verb 3
+keepalive 10 120
+float
 END
 
 sed -i $MYIP2 /etc/openvpn/ssl.ovpn;
@@ -120,25 +138,19 @@ cd
 /etc/init.d/openvpn restart
 
 # masukkan certificatenya ke dalam config client TCP 1194
-echo '<ca>' >> /etc/openvpn/tcp.ovpn
 cat /etc/openvpn/server/ca.crt >> /etc/openvpn/tcp.ovpn
-echo '</ca>' >> /etc/openvpn/tcp.ovpn
 
 # Copy config OpenVPN client ke home directory root agar mudah didownload ( TCP 1194 )
 cp /etc/openvpn/tcp.ovpn /home/vps/public_html/tcp.ovpn
 
 # masukkan certificatenya ke dalam config client UDP 2200
-echo '<ca>' >> /etc/openvpn/udp.ovpn
 cat /etc/openvpn/server/ca.crt >> /etc/openvpn/udp.ovpn
-echo '</ca>' >> /etc/openvpn/udp.ovpn
 
 # Copy config OpenVPN client ke home directory root agar mudah didownload ( UDP 2200 )
 cp /etc/openvpn/udp.ovpn /home/vps/public_html/udp.ovpn
 
 # masukkan certificatenya ke dalam config client SSL
-echo '<ca>' >> /etc/openvpn/ssl.ovpn
 cat /etc/openvpn/server/ca.crt >> /etc/openvpn/ssl.ovpn
-echo '</ca>' >> /etc/openvpn/ssl.ovpn
 
 # Copy config OpenVPN client ke home directory root agar mudah didownload ( SSL )
 cp /etc/openvpn/ssl.ovpn /home/vps/public_html/ssl.ovpn
