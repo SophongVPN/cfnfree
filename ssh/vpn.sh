@@ -80,6 +80,7 @@ setenv opt block-outside-dns
 key-direction 1
 verb 3
 keepalive 10 120
+auth-user-pass
 float
 END
 
@@ -104,6 +105,7 @@ setenv opt block-outside-dns
 key-direction 1
 verb 3
 keepalive 10 120
+auth-user-pass
 float
 END
 
@@ -128,6 +130,7 @@ setenv opt block-outside-dns
 key-direction 1
 verb 3
 keepalive 10 120
+auth-user-pass
 float
 END
 
