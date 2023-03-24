@@ -33,7 +33,7 @@ cp ohpserver /usr/local/bin/ohpserver
 /bin/rm -rf ohpserver*
 
 # Installing Service
-# SSH OHP Port 8082
+# OVPN OHP Port 8080
 cat > /etc/systemd/system/ssh-ohp.service << END
 [Unit]
 Description=SSH OHP Redirection Service
@@ -46,7 +46,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/local/bin/ohpserver -port 8082 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:22
+ExecStart=/usr/local/bin/ohpserver -port 8080 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:8181
 Restart=on-failure
 LimitNOFILE=infinity
 
@@ -54,7 +54,7 @@ LimitNOFILE=infinity
 WantedBy=multi-user.target
 END
 
-# Dropbear OHP 8081
+# OVPN OHP 8383
 cat > /etc/systemd/system/dropbear-ohp.service << END
 [Unit]]
 Description=Dropbear OHP Redirection Service
@@ -67,7 +67,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/local/bin/ohpserver -port 8081 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:109
+ExecStart=/usr/local/bin/ohpserver -port 8383 -proxy 127.0.0.1:8000 -tunnel 127.0.0.1:8181
 Restart=on-failure
 LimitNOFILE=infinity
 
@@ -75,7 +75,7 @@ LimitNOFILE=infinity
 WantedBy=multi-user.target
 END
 
-# OpenVPN OHP 8080
+# OpenVPN OHP 8888
 cat > /etc/systemd/system/openvpn-ohp.service << END
 [Unit]]
 Description=OpenVPN OHP Redirection Service
@@ -88,7 +88,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/local/bin/ohpserver -port 8080 -proxy 127.0.0.1:3128 -tunnel 127.0.0.1:1194
+ExecStart=/usr/local/bin/ohpserver -port 8888 -proxy 127.0.0.1:8282 -tunnel 127.0.0.1:8181
 Restart=on-failure
 LimitNOFILE=infinity
 
@@ -107,21 +107,21 @@ systemctl restart openvpn-ohp
 printf 'INSTALLATION COMPLETED !\n'
 sleep 0.5
 printf 'CHECKING LISTENING PORT\n'
-if [ -n "$(ss -tupln | grep ohpserver | grep -w 8082)" ]
+if [ -n "$(ss -tupln | grep ohpserver | grep -w 8080)" ]
 then
 	echo 'SSH OHP Redirection Running'
 else
 	echo 'SSH OHP Redirection Not Found, please check manually'
 fi
 sleep 0.5
-if [ -n "$(ss -tupln | grep ohpserver | grep -w 8081)" ]
+if [ -n "$(ss -tupln | grep ohpserver | grep -w 8383)" ]
 then
 	echo 'Dropbear OHP Redirection Running'
 else
 	echo 'Dropbear OHP Redirection Not Found, please check manually'
 fi
 sleep 0.5
-if [ -n "$(ss -tupln | grep ohpserver | grep -w 8080)" ]
+if [ -n "$(ss -tupln | grep ohpserver | grep -w 8888)" ]
 then
 	echo 'OpenVPN OHP Redirection Running'
 else
