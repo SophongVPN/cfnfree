@@ -117,8 +117,8 @@ systemctl restart ws-nontls8280
 
 
 # Getting Proxy Template
-wget -q -O /usr/local/bin/ws-ovpn https://${akbarvpn}/ws-ovpn.py
-#cp /root/myproject/websocket/ws-ovpn.py /usr/local/bin/ws-ovpn
+wget -q -O /usr/local/bin/ws-ovpn https://${akbarvpn}/websocket-ovpn.py
+#cp /root/myproject/websocket/websocket-ovpn.py /usr/local/bin/ws-ovpn
 chmod +x /usr/local/bin/ws-ovpn
 
 # Installing Service
