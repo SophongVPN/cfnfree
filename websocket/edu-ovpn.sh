@@ -29,8 +29,8 @@ clear
 akbarvpn="raw.githubusercontent.com/SophongVPN/cfnfree/main/websocket"
 
 # Getting Proxy Template
-wget -q -O /usr/local/bin/ws-nontls https://${akbarvpn}/websocket.py
-#cp /root/myproject/websocket/websocket.py /usr/local/bin/ws-nontls
+wget -q -O /usr/local/bin/ws-nontls https://${akbarvpn}/websocket-ovpn.py
+#cp /root/myproject/websocket/websocket-ovpn.py /usr/local/bin/ws-nontls
 chmod +x /usr/local/bin/ws-nontls
 
 # Installing Service
@@ -58,8 +58,8 @@ systemctl enable ws-nontls
 systemctl restart ws-nontls
 
 # Getting Proxy Template
-wget -q -O /usr/local/bin/ws-nontls80 https://${akbarvpn}/websocket.py
-#cp /root/myproject/websocket/websocket.py /usr/local/bin/ws-nontls80
+wget -q -O /usr/local/bin/ws-nontls80 https://${akbarvpn}/websocket-ovpn.py
+#cp /root/myproject/websocket/websocket-ovpn.py /usr/local/bin/ws-nontls80
 chmod +x /usr/local/bin/ws-nontls80
 
 # Installing Service
@@ -87,8 +87,8 @@ systemctl enable ws-nontls80
 systemctl restart ws-nontls80
 
 # Getting Proxy Template
-wget -q -O /usr/local/bin/ws-nontls8280 https://${akbarvpn}/websocket.py
-#cp /root/myproject/websocket/websocket.py /usr/local/bin/ws-nontls8280
+wget -q -O /usr/local/bin/ws-nontls8280 https://${akbarvpn}/websocket-ovpn.py
+#cp /root/myproject/websocket/websocket-ovpn.py /usr/local/bin/ws-nontls8280
 chmod +x /usr/local/bin/ws-nontls8280
 
 # Installing Service
