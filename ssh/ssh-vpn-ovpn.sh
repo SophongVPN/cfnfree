@@ -335,7 +335,7 @@ systemctl restart stunnel5
 /etc/init.d/stunnel5 restart
 
 #OpenVPN
-wget https://${akbarvpn}/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
+wget https://${akbarvpn}/ovpn.sh &&  chmod +x ovpn.sh && ./ovpn.sh
 
 # install fail2ban
 apt -y install fail2ban
