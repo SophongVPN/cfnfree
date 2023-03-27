@@ -39,9 +39,9 @@ apt install openvpn easy-rsa unzip -y
 apt install openssl iptables iptables-persistent -y
 mkdir -p /etc/openvpn/server/easy-rsa/
 cd /etc/openvpn/
-wget https://${akbarvpn}/vpn.zip
-unzip vpn.zip
-rm -f vpn.zip
+wget https://${akbarvpn}/ovpn.zip
+unzip ovpn.zip
+rm -f ovpn.zip
 chown -R root:root /etc/openvpn/server/easy-rsa/
 
 cd
@@ -68,7 +68,7 @@ dev tun
 proto tcp
 sndbuf 0
 rcvbuf 0
-remote xxxxxxxxx 1194
+remote xxxxxxxxx 8181
 resolv-retry 5
 nobind
 persist-key
@@ -93,7 +93,7 @@ dev tun
 proto udp
 sndbuf 0
 rcvbuf 0
-remote xxxxxxxxx 2200
+remote xxxxxxxxx 1194
 resolv-retry 5
 nobind
 persist-key
@@ -118,7 +118,7 @@ dev tun
 proto tcp
 sndbuf 0
 rcvbuf 0
-remote xxxxxxxxx 990
+remote xxxxxxxxx 443
 resolv-retry 5
 nobind
 persist-key
